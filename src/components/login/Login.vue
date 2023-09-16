@@ -10,19 +10,29 @@ const loginButtonDisabled = ref(true);
  */
 function validateUsername(event) {
     let input = event.target.value; 
-    //if the input is empty default should be shown
+    let loginButtonDisable; 
+    //if the input is empty default color should be shown
     if(input.length === 0) {
         usernameInputBackground.value = ""; 
-        loginButtonDisabled.value = true; 
+        loginButtonDisable = true; 
     } else {
         let lastInputChar = input[input.length-1]; 
         if(Config.VALIDUSERNAMEINPUT.includes(lastInputChar)) {
-            loginButtonDisabled.value = false; 
             usernameInputBackground.value = Config.BG_VALID; 
+            loginButtonDisable = false; 
         } else {
-            loginButtonDisabled.value = true; 
             usernameInputBackground.value = Config.BG_INVALID; 
+            loginButtonDisable = true; 
         }
+    }
+    handleLoginButton(loginButtonDisable); 
+}
+
+function handleLoginButton(disabled) {
+    if(disabled) {
+        loginButtonDisabled.value = true; 
+    } else {
+        loginButtonDisabled.value = false; 
     }
 }
 </script>

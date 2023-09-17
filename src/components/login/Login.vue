@@ -47,7 +47,7 @@ function loginButtonClicked() {
       loadingText.value = Config.LOADING_3; 
       clearInterval(loadingTextIntervall); 
     }
-  }, 3000); 
+  }, 2000); 
   
 }
 
@@ -187,10 +187,9 @@ body {
 
 .waittext {
   text-align: center;
-  font-size: 16px;
   margin-top: 10px;
   opacity: 0;
-  animation: fadeInOut 3s linear infinite;
+  animation: fadeInOut 2s linear infinite;
 }
 
 @keyframes fadeInOut {

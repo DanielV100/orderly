@@ -4,6 +4,7 @@ import * as Config from './config.js';
 const usernameInputBackground = ref(); 
 const loginButtonDisabled = ref(true); 
 const loadingScreenDisabled = ref(true); 
+const loadingText = ref(Config.LOADING_1); 
 
 /**
  * Username should only contain a-Z and '.' - this method validates the input. 
@@ -38,12 +39,18 @@ function handleLoginButton(disabled) {
 }
 
 function loginButtonClicked() {
-  showLoadingAnimation(); 
+  loadingScreenDisabled.value = false; 
+  let loadingTextIntervall = setInterval(() => {
+    if(loadingText.value === Config.LOADING_1) {
+      loadingText.value = Config.LOADING_2; 
+    } else {
+      loadingText.value = Config.LOADING_3; 
+      clearInterval(loadingTextIntervall); 
+    }
+  }, 3000); 
+  
 }
 
-function showLoadingAnimation() {
-  loadingScreenDisabled.value = false; 
-}
 </script>
 
 <template>
@@ -60,6 +67,11 @@ function showLoadingAnimation() {
             </div>
             <button type="submit" class="btn" :disabled="loginButtonDisabled" @click="loginButtonClicked">Login</button>
         </form>
+    </div>
+    <div class="wrapper" v-else>
+      <div class="loader"></div>
+      <p class="waittext">{{ loadingText }}</p>
+      
     </div>
 </template>
 
@@ -151,4 +163,42 @@ body {
     background: rgba(240, 240, 240, 0.3);
 }
 
+.loader {
+  margin: auto auto;
+  border: 16px solid rgba(100, 200, 0, 0.3);
+  border-radius: 50%;
+  border-top: 16px solid rgba(100, 200, 0, 1);
+  width: 120pt;
+  height: 120pt;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.waittext {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 10px;
+  opacity: 0;
+  animation: fadeInOut 3s linear infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
 </style>

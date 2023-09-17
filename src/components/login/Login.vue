@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import * as Config from './config.js'; 
 const usernameInputBackground = ref(); 
 const loginButtonDisabled = ref(true); 
+const loadingScreenDisabled = ref(true); 
 
 /**
  * Username should only contain a-Z and '.' - this method validates the input. 
@@ -35,10 +36,18 @@ function handleLoginButton(disabled) {
         loginButtonDisabled.value = false; 
     }
 }
+
+function loginButtonClicked() {
+  showLoadingAnimation(); 
+}
+
+function showLoadingAnimation() {
+  loadingScreenDisabled.value = false; 
+}
 </script>
 
 <template>
-    <div class="wrapper">
+    <div v-if="loadingScreenDisabled" class="wrapper">
         <form action="">
             <h1>{{Config.HEADING}}</h1>
             <div class="input-box">
@@ -49,7 +58,7 @@ function handleLoginButton(disabled) {
                 <input type="password" placeholder="Password" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
-            <button type="submit" class="btn" :disabled="loginButtonDisabled">Login</button>
+            <button type="submit" class="btn" :disabled="loginButtonDisabled" @click="loginButtonClicked">Login</button>
         </form>
     </div>
 </template>

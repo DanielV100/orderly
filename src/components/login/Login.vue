@@ -38,17 +38,37 @@ function handleLoginButton(disabled) {
     }
 }
 
+/**
+ * Function controlls the action which shoulb be triggered when clicking login button. 
+ */
 function loginButtonClicked() {
   loadingScreenDisabled.value = false; 
+  startLoadingAnimation(); 
+
+}
+
+function callDashboard() {
+  window.location = '#/dashboard'; 
+}
+
+/**
+ * Function to show texts during loading. 
+ * It's great for the users ux when getting little texts while waiting. 
+ */
+function startLoadingAnimation() {
   let loadingTextIntervall = setInterval(() => {
+    //set second text 
     if(loadingText.value === Config.LOADING_1) {
       loadingText.value = Config.LOADING_2; 
-    } else {
+      //set third text 
+    } else if(loadingText.value === Config.LOADING_2) {
       loadingText.value = Config.LOADING_3; 
+      //call another window
+    } else {
       clearInterval(loadingTextIntervall); 
+      callDashboard(); 
     }
   }, 2000); 
-  
 }
 
 </script>
@@ -71,7 +91,6 @@ function loginButtonClicked() {
     <div class="wrapper" v-else>
       <div class="loader"></div>
       <p class="waittext">{{ loadingText }}</p>
-      
     </div>
 </template>
 

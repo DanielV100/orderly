@@ -1,14 +1,29 @@
 <script setup>
 import * as GlobalConfig from '../globals/globalConfig.js'; 
 
+/**
+ * What should happen when user wants to log out? 
+ * Go to login page and close the session. 
+ */
+function onClickLogOut() {
+    goToLogin(); 
+}
+
+/**
+ * Changing window location to login screen 
+ */
+function goToLogin() {
+    window.location.href='/'; 
+}
+
 </script>
 
 <template>
     <div class="header">
         <a href="#dashboard" class="logo">{{ GlobalConfig.HEADING}}</a>
         <div class="header-right">
-            <i class='bx bx-user' ></i>
-            <i id="test" class='bx bx-log-out'></i>
+            <i class='bx bx-user'></i>
+            <i @click="onClickLogOut" class='bx bx-log-out'></i>
         </div>
     </div>
 </template>
@@ -52,11 +67,10 @@ i {
     font-size: 35pt;
 }
 i:hover {
+    font-weight: 900;
     cursor: pointer;
     background-color: #ddd;
 }
-
-
 .header-right {
   float: right;
 }

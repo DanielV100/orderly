@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'; 
 import * as Config from './config.js'; 
+import * as GlobalConfig from '../globals/globalConfig.js'; 
+
 const usernameInputBackground = ref(); 
 const loginButtonDisabled = ref(true); 
 const loadingScreenDisabled = ref(true); 
@@ -21,10 +23,10 @@ function validateUsername(event) {
     } else {
         let lastInputChar = input[input.length-1]; 
         if(Config.VALIDUSERNAMEINPUT.includes(lastInputChar)) {
-            usernameInputBackground.value = Config.BG_VALID; 
+            usernameInputBackground.value = GlobalConfig.BG_VALID; 
             loginButtonDisable = false; 
         } else {
-            usernameInputBackground.value = Config.BG_INVALID; 
+            usernameInputBackground.value = GlobalConfig.BG_INVALID; 
             loginButtonDisable = true; 
         }
     }
@@ -99,7 +101,7 @@ function setPasswordVisibility(type) {
   <div class="login">
     <div v-if="loadingScreenDisabled" class="wrapper">
         <form action="">
-            <h1>{{Config.HEADING}}</h1>
+            <h1>{{GlobalConfig.HEADING}}</h1>
             <div class="input-box">
                 <input @input="validateUsername" :style="usernameInputBackground" type="text" placeholder="Username" required>
                 <i class='bx bxs-user'></i>
@@ -190,13 +192,13 @@ function setPasswordVisibility(type) {
   font-weight: 600;
 }
 .wrapper .btn:disabled {
-    background: rgba(240, 240, 240, 0.3);
+    background: var(--btnDisabled);
 }
 .loader {
   margin: auto auto;
-  border: 16px solid rgba(100, 200, 0, 0.3);
+  border: 16px solid var(--darkerGreen);
   border-radius: 50%;
-  border-top: 16px solid rgba(100, 200, 0, 1);
+  border-top: 16px solid var(--green);
   width: 120pt;
   height: 120pt;
   -webkit-animation: spin 2s linear infinite; /* Safari */

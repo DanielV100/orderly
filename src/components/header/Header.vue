@@ -1,28 +1,24 @@
 <script setup>
+import * as GlobalConfig from '../globals/globalConfig.js'; 
 
 </script>
 
 <template>
-    <div id="header">
-        <div class="header">
-  <a href="#default" class="logo">CompanyLogo</a>
-  <div class="header-right">
-    <a class="active" href="#home">Home</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
-  </div>
-</div>
-
-<div style="padding-left:20px">
-  <h1>Responsive Header</h1>
-  <p>Resize the browser window to see the effect.</p>
-  <p>Some content..</p>
-</div>
+    <div class="header">
+        <a href="#dashboard" class="logo">{{ GlobalConfig.HEADING}}</a>
+        <div class="header-right">
+            <i class='bx bx-user' ></i>
+            <i id="test" class='bx bx-log-out'></i>
+        </div>
     </div>
 </template>
 
 <style scoped>
-* {box-sizing: border-box;}
+
+
+* {
+    box-sizing: border-box;
+}
 
 
 body {
@@ -30,35 +26,36 @@ body {
 }
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
+  background-color: var(--grey);
 }
 
 .header a {
   float: left;
   color: black;
   text-align: center;
-  padding: 12px;
   text-decoration: none;
-  font-size: 18px; 
-  line-height: 25px;
-  border-radius: 4px;
 }
 
 .header a.logo {
-  font-size: 25px;
+  padding: 12pt;
+  font-size: 25pt;
   font-weight: bold;
 }
 
 .header a:hover {
   background-color: #ddd;
   color: black;
+
+}
+i {
+    padding: 12pt;
+    font-size: 35pt;
+}
+i:hover {
+    cursor: pointer;
+    background-color: #ddd;
 }
 
-.header a.active {
-  background-color: dodgerblue;
-  color: white;
-}
 
 .header-right {
   float: right;

@@ -37,7 +37,7 @@ init();
     
 </template>
 
-<style>
+<style scoped>
 
 .welcome {
     display: inline-block;

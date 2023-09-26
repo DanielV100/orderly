@@ -96,6 +96,7 @@ function setPasswordVisibility(type) {
 </script>
 
 <template>
+  <div class="login">
     <div v-if="loadingScreenDisabled" class="wrapper">
         <form action="">
             <h1>{{Config.HEADING}}</h1>
@@ -115,19 +116,12 @@ function setPasswordVisibility(type) {
       <div class="loader"></div>
       <p class="waittext">{{ loadingText }}</p>
     </div>
+  </div>
+    
 </template>
 
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,400;6..12,800&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Nunito Sans", sans-serif;
-}
-
-body {
+<style scoped>
+.login {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,9 +143,7 @@ body {
 }
 
 .wrapper h1 {
-  font-size: 36px;
   text-align: center;
-  font-weight: 800;
 }
 
 .wrapper .input-box {
@@ -173,11 +165,9 @@ body {
   color: #fff;
   padding: 20px 45px 20px 20px;
 }
-
 .input-box input::placeholder {
   color: #fff;
 }
-
 .input-box i {
   position: absolute;
   right: 20px;
@@ -185,7 +175,6 @@ body {
   transform: translateY(-50%);
   font-size: 20px;
 }
-
 
 .wrapper .btn {
   width: 100%;
@@ -200,11 +189,9 @@ body {
   color: #333;
   font-weight: 600;
 }
-
 .wrapper .btn:disabled {
     background: rgba(240, 240, 240, 0.3);
 }
-
 .loader {
   margin: auto auto;
   border: 16px solid rgba(100, 200, 0, 0.3);
@@ -226,14 +213,12 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
 .waittext {
   text-align: center;
   margin-top: 10px;
   opacity: 0;
   animation: fadeInOut 2s linear infinite;
 }
-
 @keyframes fadeInOut {
   0%, 100% {
     opacity: 0;

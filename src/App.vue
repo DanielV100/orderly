@@ -21,6 +21,8 @@ const currentView = computed(() => {
   //header shouldn't be shown in login page
   if(current.__name !== 'Login') {
     isShowingHeader.value = true; 
+  } else {
+    isShowingHeader.value = false; 
   }
   return  current || NotFound; 
 })

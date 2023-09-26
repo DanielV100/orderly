@@ -1,3 +1,4 @@
 /**** Welcome message  ****/
-export const WELCOMEMESSAGE = "Welcome to Orderly, "; 
+export const WELCOMEMESSAGE = "Guten Morgen, "; 
+export const INTROMESSAGE = "Was steht heute auf dem Programm? 🚀"; 
 export const TYPEWRITTERSPEED = 100; 

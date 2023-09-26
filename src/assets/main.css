@@ -13,6 +13,7 @@
     /**** font sizes ****/
     --standardFontSize: 18px; 
     --headingFontSize: 36px; 
+    --bigHeadingFontSize: 40pt; 
 }
 * {
     margin: 0;
@@ -30,4 +31,10 @@ h1 {
     font-size: var(--headingFontSize);
     font-weight: 800;
     font-family: var(--standardFont);
+}
+
+h2 {
+    font-family: var(--standardFont);
+    font-size: var(--headingFontSize);
+    font-weight: bold;
 }

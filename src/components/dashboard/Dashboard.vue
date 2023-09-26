@@ -23,48 +23,76 @@ init();
 </script>
 
 <template>
-    <div>
+    <div id="dashboard">
+        <div id="test">
         <div class="welcome">
             <p id="welcomeMessage"> {{ Config.WELCOMEMESSAGE }}</p> 
             <p id="welcomeName"></p>
+            <h2>{{ Config.INTROMESSAGE }} </h2>
         </div>
+       
         <div class="wrapper">
-            <button class="custom-button">Button 1</button>
-            <button class="custom-button">Button 2</button>
-            <button class="custom-button">Button 3</button>
+            <button class="custom-button">Übung anlegen</button>
+            <button class="custom-button">Training zusammenstellen</button>
+            <button class="custom-button">Neuen Torwart eintragen</button>
+            <button class="custom-button">Ins Dashboard</button>
         </div>
-    </div>
-    
+        </div>
+    </div>    
 </template>
+
+
 
 <style scoped>
 
+.wrapper {
+    margin-top: 20pt;
+    place-self: center;
+    min-width: 80%;
+    max-width: 80%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10pt;
+    padding: 20pt 20pt 10pt 20pt;
+}
+
+#test {
+    display: grid;
+}
+
 .welcome {
+    place-self: center;
+    padding: 12pt;
     display: inline-block;
     margin-bottom: auto;
 }
 
 #welcomeMessage {
     display: inline;
-    font-size: 32pt;
+    font-size: var(--bigHeadingFontSize);
     font-weight: 200;
 }
 #welcomeName {
     display: inline;
-    font-size: 40px;
+    font-size: var(--bigHeadingFontSize); 
     font-weight: 800;
     color: rgba(100, 200, 0, 1);
 }
-
+.custom-button:hover {
+    background: rgb(50, 99, 1);
+}
 .custom-button {
-  width: calc(33.33% - 10px); 
-  margin: 0px 10px 10px 0px;
+  width: calc(50% - 20pt); 
+  margin: 0px 20pt 20pt 0px;
   border: none;
-  background-color: #007bff;
+  background-color: var(--green);
   color: #fff;
-  font-size: 16px;
+  font-size: 18pt;
   cursor: pointer;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 20pt;
 }
 </style>

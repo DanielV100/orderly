@@ -4,6 +4,7 @@ import * as Config from './config.js';
 const usernameInputBackground = ref(); 
 const loginButtonDisabled = ref(true); 
 const loadingScreenDisabled = ref(true); 
+const isPasswordInvsible = ref(true); 
 const loadingText = ref(Config.LOADING_1); 
 
 /**
@@ -71,6 +72,27 @@ function startLoadingAnimation() {
   }, 2000); 
 }
 
+/**
+ * Function used for setting the lock opend/closed in password field. 
+ */
+function tooglePasswordIcon() {
+  if(isPasswordInvsible.value === true) {
+    setPasswordVisibility("text"); 
+    isPasswordInvsible.value = false; 
+  } else {
+    setPasswordVisibility("password"); 
+    isPasswordInvsible.value = true; 
+  }
+}
+
+/**
+ * Getting the password input from DOM and set it visible/unvisible.  
+ * @param {'password', 'text'} string  
+ */
+function setPasswordVisibility(type) {
+  document.getElementById('password').setAttribute("type", type); 
+}
+
 </script>
 
 <template>
@@ -82,8 +104,9 @@ function startLoadingAnimation() {
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
-                <i class='bx bxs-lock-alt'></i>
+                <input id="password" type="password" placeholder="Password" required>
+                <i @click="tooglePasswordIcon" v-if="isPasswordInvsible" class='bx bxs-lock-alt'></i>
+                <i @click="tooglePasswordIcon" v-else class='bx bxs-lock-open-alt' ></i>
             </div>
             <button type="submit" class="btn" :disabled="loginButtonDisabled" @click="loginButtonClicked">Login</button>
         </form>
@@ -109,7 +132,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('assets/background.jpg') no-repeat;
+  background: url('assets/background.jpeg') no-repeat;
   background-size: cover;
   background-position: center;
 }

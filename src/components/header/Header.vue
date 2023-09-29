@@ -24,7 +24,6 @@ function goToLogin() {
         <div class="header-right">
             <i class='bx bx-user'></i>
             <i @click="onClickLogOut" class='bx bx-log-out'></i>
-            <slot></slot>
         </div>
     </div>
 </template>

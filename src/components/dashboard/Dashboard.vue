@@ -21,6 +21,9 @@ function typeWriter() {
   }
 }
 
+function callPageForAddingNewGoalie() {
+  window.location = '#/addgoalie'; 
+}
 
 init(); 
 </script>
@@ -37,7 +40,7 @@ init();
                 <button class="custom-button">Ins Dashboard</button>
                 <button class="custom-button">Übung anlegen</button>
                 <button class="custom-button">Training zusammenstellen</button>
-                <button class="custom-button">Neuen Torwart eintragen</button>
+                <button @click="callPageForAddingNewGoalie" class="custom-button">Neuen Torwart eintragen</button>
             </div>
         </div>
     </div>    

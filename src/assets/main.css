@@ -1,63 +1,62 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,400;6..12,800&display=swap");
 
 :root {
-    /**** colors ****/
-    --green: rgba(100, 200, 0, 1); 
-    --darkerGreen: rgba(100, 200, 0, 0.3); 
-    --btnDisabled: rgba(240, 240, 240, 0.3); 
-    --grey: rgb(240, 240, 240, 1); 
-    
-    /**** font family ****/
-    --standardFont: "Nunito Sans", sans-serif; 
-    
-    /**** font sizes ****/
-    --standardFontSize: 18px; 
-    --headingFontSize: 36px; 
-    --bigHeadingFontSize: 40pt; 
+  /**** colors ****/
+  --green: rgba(100, 200, 0, 1);
+  --darkerGreen: rgba(100, 200, 0, 0.3);
+  --btnDisabled: rgba(240, 240, 240, 0.3);
+  --grey: rgb(240, 240, 240, 1);
+
+  /**** font family ****/
+  --standardFont: "Nunito Sans", sans-serif;
+
+  /**** font sizes ****/
+  --standardFontSize: 18px;
+  --headingFontSize: 36px;
+  --bigHeadingFontSize: 40pt;
 }
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: var(--standardFont);
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--standardFont);
+}
 
 p {
-    font-family: var(--standardFont);
-    font-size: var(--standardFontSize);
+  font-family: var(--standardFont);
+  font-size: var(--standardFontSize);
 }
 
 h1 {
-    font-size: var(--headingFontSize);
-    font-weight: 800;
-    font-family: var(--standardFont);
+  font-size: var(--headingFontSize);
+  font-weight: 800;
+  font-family: var(--standardFont);
 }
 h2 {
-    font-family: var(--standardFont);
-    font-size: var(--headingFontSize);
-    font-weight: bold;
+  font-family: var(--standardFont);
+  font-size: var(--headingFontSize);
+  font-weight: bold;
 }
 
 /**** current page indicator ****/
 .current_page_indicator {
-    display: inline;
-    margin-top: 8pt;
-    margin-left: 12pt;
-    display: flex;
-    align-items: center;
-    color: gray;
+  display: inline;
+  margin-top: 8pt;
+  margin-left: 12pt;
+  display: flex;
+  align-items: center;
+  color: gray;
 }
 .current_page_indicator i {
-    display: inline-block;
-    font-size: 20pt;
-    font-weight: 100;
+  display: inline-block;
+  font-size: 20pt;
+  font-weight: 100;
 }
 .current_page_indicator i:hover {
-    color: black;
-    font-weight: bold;
-
+  color: black;
+  font-weight: bold;
 }
 .current_page_indicator p {
-    display: inline-block;
-    font-size: 14pt;
+  display: inline-block;
+  font-size: 14pt;
 }

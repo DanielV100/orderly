@@ -20,10 +20,11 @@ function goToLogin() {
 
 <template>
     <div class="header">
-        <a href="#dashboard" class="logo">{{ GlobalConfig.HEADING}}</a>
+        <a href="#/dashboard" class="logo">{{ GlobalConfig.HEADING}}</a>
         <div class="header-right">
             <i class='bx bx-user'></i>
             <i @click="onClickLogOut" class='bx bx-log-out'></i>
+            <slot></slot>
         </div>
     </div>
 </template>

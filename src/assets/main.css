@@ -32,9 +32,32 @@ h1 {
     font-weight: 800;
     font-family: var(--standardFont);
 }
-
 h2 {
     font-family: var(--standardFont);
     font-size: var(--headingFontSize);
     font-weight: bold;
+}
+
+/**** current page indicator ****/
+.current_page_indicator {
+    display: inline;
+    margin-top: 8pt;
+    margin-left: 12pt;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+.current_page_indicator i {
+    display: inline-block;
+    font-size: 20pt;
+    font-weight: 100;
+}
+.current_page_indicator i:hover {
+    color: black;
+    font-weight: bold;
+
+}
+.current_page_indicator p {
+    display: inline-block;
+    font-size: 14pt;
 }

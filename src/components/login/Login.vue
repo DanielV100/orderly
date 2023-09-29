@@ -102,6 +102,7 @@ function setPasswordVisibility(type) {
     <div v-if="loadingScreenDisabled" class="wrapper">
         <form action="">
             <h1>{{GlobalConfig.HEADING}}</h1>
+            <p id="dedication">pour simon</p>
             <div class="input-box">
                 <input @input="validateUsername" :style="usernameInputBackground" type="text" placeholder="Username" required>
                 <i class='bx bxs-user'></i>
@@ -123,6 +124,15 @@ function setPasswordVisibility(type) {
 </template>
 
 <style scoped>
+
+#dedication {
+  margin-top: -5pt;
+  text-align: center;
+  color: var(--btnDisabled); 
+}
+#test {
+  text-align: center;
+}
 .login {
   display: flex;
   justify-content: center;

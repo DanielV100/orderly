@@ -1,7 +1,9 @@
 <script setup>
 import { onMounted } from 'vue';
 import * as Config from './config.js'
-const username = "Daniel!";
+
+
+const username = "Daniel Vollmer!";
 let i = 0; 
  
 onMounted(() => {
@@ -19,24 +21,24 @@ function typeWriter() {
   }
 }
 
+
 init(); 
 </script>
 
 <template>
     <div id="dashboard">
         <div id="test">
-        <div class="welcome">
-            <p id="welcomeMessage"> {{ Config.WELCOMEMESSAGE }}</p> 
-            <p id="welcomeName"></p>
-            <h2>{{ Config.INTROMESSAGE }} </h2>
-        </div>
-       
-        <div class="wrapper">
-            <button class="custom-button">Übung anlegen</button>
-            <button class="custom-button">Training zusammenstellen</button>
-            <button class="custom-button">Neuen Torwart eintragen</button>
-            <button class="custom-button">Ins Dashboard</button>
-        </div>
+            <div class="welcome">
+                <p id="welcomeMessage"> {{ Config.WELCOMEMESSAGE }}</p> 
+                <p id="welcomeName"></p>
+                <h2>{{ Config.INTROMESSAGE }} </h2>
+            </div>
+            <div class="wrapper">
+                <button class="custom-button">Ins Dashboard</button>
+                <button class="custom-button">Übung anlegen</button>
+                <button class="custom-button">Training zusammenstellen</button>
+                <button class="custom-button">Neuen Torwart eintragen</button>
+            </div>
         </div>
     </div>    
 </template>
@@ -50,13 +52,14 @@ init();
     place-self: center;
     min-width: 80%;
     max-width: 80%;
-    background: transparent;
+    background: var(--grey);
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
     color: #fff;
     border-radius: 10pt;
     padding: 20pt 20pt 10pt 20pt;
+
 }
 
 #test {
@@ -83,6 +86,8 @@ init();
 }
 .custom-button:hover {
     background: rgb(50, 99, 1);
+    text-align: left;
+    font-weight: bold;
 }
 .custom-button {
   width: calc(50% - 20pt); 

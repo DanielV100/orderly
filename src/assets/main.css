@@ -1,11 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,400;6..12,800&display=swap");
 
+/**** VARIABLES ****/
 :root {
-  /**** colors ****/
-  --green: rgba(100, 200, 0, 1);
-  --darkerGreen: rgba(100, 200, 0, 0.3);
-  --btnDisabled: rgba(240, 240, 240, 0.3);
-  --grey: rgb(240, 240, 240, 1);
+  /**** COLORS ****/
+  /* used for (1)  hovering over buttons */
+  --deepForestGreen: rgba(51, 114, 85, 1);
+  /* used for (1) buttons in standard mode, (2) loaders */
+  --avocadoGreen: rgba(95, 191, 129, 1);
+  /* used for (1) disabled buttons, (2) loaders  */
+  --avocadoGreenLowOpacity: rgba(95, 191, 129, 0.3);
+  /* used for (1) light text */
+  --mouseGrey: rgba(240, 240, 240, 0.3);
+  /* used for (1) header */ 
+  --lightGrey: rgb(240, 240, 240, 1);
+  /* used for page indicator */ 
+  --deepOceanBlue: rgba(33, 49, 63, 1);
+
+  --limeGreen: rgba(147, 216, 78, 1);
+  --darkMossGreen: rgba(58, 140, 102, 1);
 
   /**** font family ****/
   --standardFont: "Nunito Sans", sans-serif;
@@ -15,6 +27,8 @@
   --headingFontSize: 36px;
   --bigHeadingFontSize: 40pt;
 }
+
+/**** ALL ****/
 * {
   margin: 0;
   padding: 0;
@@ -22,11 +36,26 @@
   font-family: var(--standardFont);
 }
 
+/**** BUTTONS ****/
+button {
+  background: var(--avocadoGreen);
+}
+
+button:hover {
+  background: var(--deepForestGreen);
+}
+
+button:disabled {
+  background: var(--avocadoGreenLowOpacity);
+}
+
+/**** text ****/
 p {
   font-family: var(--standardFont);
   font-size: var(--standardFontSize);
 }
 
+/**** headings ****/
 h1 {
   font-size: var(--headingFontSize);
   font-weight: 800;
@@ -45,7 +74,7 @@ h2 {
   margin-left: 12pt;
   display: flex;
   align-items: center;
-  color: gray;
+  color: var(--deepOceanBlue);
 }
 .current_page_indicator i {
   display: inline-block;

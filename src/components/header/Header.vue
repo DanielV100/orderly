@@ -41,7 +41,7 @@ body {
 }
 .header {
   overflow: hidden;
-  background-color: var(--grey);
+  background-color: var(--lightGrey);
 }
 
 .header a {

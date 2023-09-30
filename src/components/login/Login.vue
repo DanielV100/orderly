@@ -128,7 +128,7 @@ function setPasswordVisibility(type) {
 #dedication {
   margin-top: -5pt;
   text-align: center;
-  color: var(--btnDisabled); 
+  color: var(--mouseGrey); 
 }
 #test {
   text-align: center;
@@ -202,13 +202,13 @@ function setPasswordVisibility(type) {
   font-weight: 600;
 }
 .wrapper .btn:disabled {
-    background: var(--btnDisabled);
+    background: var(--mouseGrey);
 }
 .loader {
   margin: auto auto;
-  border: 16px solid var(--darkerGreen);
+  border: 16px solid var(--avocadoGreenLowOpacity);
   border-radius: 50%;
-  border-top: 16px solid var(--green);
+  border-top: 16px solid var(--avocadoGreen);
   width: 120pt;
   height: 120pt;
   -webkit-animation: spin 2s linear infinite; /* Safari */

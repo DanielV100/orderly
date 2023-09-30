@@ -132,12 +132,8 @@ function resetForm() {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: var(--green);
 }
 
-.success-btn button:hover {
-  background: rgb(50, 99, 1);
-}
 .submit-successfull {
   padding-right: 20pt;
   padding-left: 20pt;
@@ -157,9 +153,9 @@ function resetForm() {
   border-radius: 50%;
   place-self: center;
   stroke-width: 2;
-  stroke: var(--green);
+  stroke: var(--avocadoGreen);
   stroke-miterlimit: 10;
-  box-shadow: inset 0px 0px 0px var(--green);
+  box-shadow: inset 0px 0px 0px var(--avocadoGreen);
   animation: fill 0.4s ease-in-out 0.4s forwards,scale 0.3s ease-in-out 0.9s both;
 }
 .checkmark__circle {
@@ -167,7 +163,7 @@ function resetForm() {
   stroke-dashoffset: 166;
   stroke-width: 2;
   stroke-miterlimit: 10;
-  stroke: #4bb71b;
+  box-shadow: inset 0px 0px 0px var(--avocadoGreen);
   fill: #fff;
   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
@@ -212,7 +208,7 @@ input {
   place-self: center;
   min-width: 80%;
   max-width: 80%;
-  background: var(--grey);
+  background: var(--lightGrey);
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -264,14 +260,8 @@ input {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: var(--green);
 }
-.form button:hover {
-  background: rgb(50, 99, 1);
-}
-.form button:disabled {
-  background: var(--darkerGreen);
-}
+
 /*Responsive*/
 @media screen and (max-width: 500px) {
   .form .column {

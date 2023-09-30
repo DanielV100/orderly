@@ -55,7 +55,7 @@ init();
     place-self: center;
     min-width: 80%;
     max-width: 80%;
-    background: var(--grey);
+    background: var(--lightGrey);
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
@@ -85,10 +85,9 @@ init();
     display: inline;
     font-size: var(--bigHeadingFontSize); 
     font-weight: 800;
-    color: rgba(100, 200, 0, 1);
+    color: var(--avocadoGreen)
 }
 .custom-button:hover {
-    background: rgb(50, 99, 1);
     text-align: left;
     font-weight: bold;
 }
@@ -96,7 +95,6 @@ init();
   width: calc(50% - 20pt); 
   margin: 0px 20pt 20pt 0px;
   border: none;
-  background-color: var(--green);
   color: #fff;
   font-size: 18pt;
   cursor: pointer;

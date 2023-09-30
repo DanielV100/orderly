@@ -1,28 +1,37 @@
 <script setup>
-import { onMounted, ref } from 'vue'; 
-import * as Config from './config.js'; 
+import { onMounted, ref } from "vue";
+import * as Config from "./config.js";
 const submitButtonDisabled = ref(true);
-const sumbmittedSuccessfully = ref(false); 
-let inputFirstname; 
-let inputLastname;  
-let inputClub; 
+const sumbmittedSuccessfully = ref(false);
+let inputFirstname;
+let inputLastname;
+let inputClub;
+let form; 
 onMounted(() => {
-  inputFirstname = document.getElementById('firstname');
-  inputLastname = document.getElementById('lastname');
-  inputClub = document.getElementById('club');
-});  
+  inputFirstname = document.getElementById("firstname");
+  inputLastname = document.getElementById("lastname");
+  inputClub = document.getElementById("club");
+  form = document.getElementById('form'); 
+});
 
 function validateMandantoryFieldsFilled(event) {
-  if(event.target.value === "") {
-    submitButtonDisabled.value = true; 
+  if (event.target.value === "") {
+    submitButtonDisabled.value = true;
   }
-  if(inputFirstname.value && inputClub.value && inputLastname.value) {
-    submitButtonDisabled.value = false; 
-  } 
+  if (inputFirstname.value && inputClub.value && inputLastname.value) {
+    submitButtonDisabled.value = false;
+  }
 }
 
 function onSubmitClick() {
-  sumbmittedSuccessfully.value = true; 
+  sumbmittedSuccessfully.value = true;
+  submitButtonDisabled.value = true; 
+}
+
+function resetForm() {
+  sumbmittedSuccessfully.value = false; 
+  form.reset(); 
+
 }
 </script>
 
@@ -34,98 +43,163 @@ function onSubmitClick() {
       <p>Neuen Torwart anlegen</p>
     </div>
     <div class="wrapper">
-      <form @submit="onSubmitClick" class="form">
+      <form @submit="onSubmitClick" class="form" id="form">
         <div class="column">
           <div class="input-box">
             <label>{{ Config.FORM_FIRSTNAME_LABEL }}*</label>
-            <input @input="validateMandantoryFieldsFilled" id="firstname" type="text" placeholder="Oliver" required />
+            <input
+              @input="validateMandantoryFieldsFilled"
+              id="firstname"
+              type="text"
+              placeholder="Oliver"
+              required
+            />
           </div>
           <div class="input-box">
             <label>{{ Config.FORM_LASTNAME_LABEL }}*</label>
-            <input @input="validateMandantoryFieldsFilled" id="lastname" type="text" placeholder="Kahn" required />
+            <input
+              @input="validateMandantoryFieldsFilled"
+              id="lastname"
+              type="text"
+              placeholder="Kahn"
+              required
+            />
           </div>
         </div>
         <div class="column">
           <div class="input-box">
             <label>{{ Config.FORM_CLUB }}*</label>
-            <input @input="validateMandantoryFieldsFilled" id="club" type="text" placeholder="FC Bayern München" required/>
+            <input
+              @input="validateMandantoryFieldsFilled"
+              id="club"
+              type="text"
+              placeholder="FC Bayern München"
+              required
+            />
           </div>
           <div class="input-box">
-            <label>{{ Config.FORM_BIRTHDAY}}</label>
+            <label>{{ Config.FORM_BIRTHDAY }}</label>
             <input id="birthday" type="date" />
           </div>
         </div>
         <div class="input-box address">
-          <label>{{ Config.FORM_NOTES }}</label>
-          <input id="notes" type="text" placeholder="Wir brauchen Eier!"/>
+          <label>{{ Config.FORM_NOTES }}</label>
+          <input id="notes" type="text" placeholder="Wir brauchen Eier!" />
         </div>
-        <button :disabled="submitButtonDisabled" >Torwart anlegen</button>
+        <button :disabled="submitButtonDisabled">Torwart anlegen</button>
       </form>
     </div>
-    <div class="success-animation" v-if="sumbmittedSuccessfully">
-      <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>    
+    <div v-if="sumbmittedSuccessfully" class="submit-successfull">
+      <div class="success-animation">
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+          <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+          <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+        </svg>
+      </div>
+      <div class="success-options">
+        <h2>Torwart erfolgreich angelegt! </h2>
+        <div class="success-btn">
+          <button @click="resetForm" id="btn-new-keeper">Neuen Torwart anlegen </button>
+          <button>Ins Menü zurück</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.success-animation { 
-  margin:20pt auto;
+
+#btn-new-keeper {
+  margin-right: 20px;
+}
+
+.success-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.success-btn {
+  display: flex;
+  min-width: 100%;
+}
+
+.success-btn button {
+  flex: 1;
+  color: #fff;
+  font-size: 18pt;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--green);
+}
+
+.success-btn button:hover {
+  background: rgb(50, 99, 1);
+}
+.submit-successfull {
+  padding-right: 20pt;
+  padding-left: 20pt;
+  width: 80%;
+  display: flex;
+  place-self: center;
+  align-items: center;
+}
+
+.success-animation {
+  margin: 20pt auto;
 }
 
 .checkmark {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: block;
-    stroke-width: 2;
-    stroke: var(--green);
-    stroke-miterlimit: 10;
-    box-shadow: inset 0px 0px 0px var(--green);
-    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
-    position:relative;
-    top: 5px;
-    right: 5px;
-   margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  place-self: center;
+  stroke-width: 2;
+  stroke: var(--green);
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px var(--green);
+  animation: fill 0.4s ease-in-out 0.4s forwards,scale 0.3s ease-in-out 0.9s both;
 }
 .checkmark__circle {
-    stroke-dasharray: 166;
-    stroke-dashoffset: 166;
-    stroke-width: 2;
-    stroke-miterlimit: 10;
-    stroke: #4bb71b;
-    fill: #fff;
-    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
- 
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #4bb71b;
+  fill: #fff;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
 
 .checkmark__check {
-    transform-origin: 50% 50%;
-    stroke-dasharray: 48;
-    stroke-dashoffset: 48;
-    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
 
 @keyframes stroke {
-    100% {
-        stroke-dashoffset: 0;
-    }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes scale {
-    0%, 100% {
-        transform: none;
-    }
+  0%,
+  100% {
+    transform: none;
+  }
 
-    50% {
-        transform: scale3d(1.1, 1.1, 1);
-    }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
 }
 
 @keyframes fill {
-    100% {
-        box-shadow: inset 0px 0px 0px 30px #4bb71b;
-    }
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #4bb71b;
+  }
 }
 #addgoalie {
   display: grid;
@@ -193,10 +267,10 @@ input {
   background: var(--green);
 }
 .form button:hover {
-  background: rgb(88, 56, 250);
+  background: rgb(50, 99, 1);
 }
 .form button:disabled {
-  background: var(--darkerGreen); 
+  background: var(--darkerGreen);
 }
 /*Responsive*/
 @media screen and (max-width: 500px) {

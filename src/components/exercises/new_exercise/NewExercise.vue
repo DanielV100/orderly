@@ -2,8 +2,10 @@
 import { onMounted } from 'vue';
 
 let materialContainer; 
+let canvas;
 onMounted(() => {
     materialContainer = document.getElementById('materialcontainer'); 
+    canvas = document.getElementById('penaltyArea'); 
 }); 
 function addMaterial(event) {
     const materialContainer = document.getElementById('materialelement');
@@ -14,7 +16,71 @@ function addMaterial(event) {
     
 
     document.getElementById('materialcontainer').appendChild(newMaterial);
+
+    const ctx = canvas.getContext('2d');
+
+    ctx.translate(canvas.width, 0);
+    ctx.rotate(Math.PI / 2);
+    ctx.scale(2, 2);
+      
+      // Outer lines
+      ctx.beginPath();
+      ctx.rect(0,0, canvas.width, canvas.height);
+      ctx.fillStyle = "#060";
+      ctx.fill();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "#FFF";
+      ctx.stroke();
+      ctx.closePath();
+      
+      ctx.fillStyle = "#FFF";
+      
+      //Home penalty box
+      ctx.beginPath();
+      ctx.rect(0, (canvas.height - 322) / 2, 132, 322);
+      ctx.stroke();
+      ctx.closePath();
+      //Home goal box
+      ctx.beginPath();
+      ctx.rect(0, (canvas.height - 146) / 2, 44, 146);
+      ctx.stroke();
+      ctx.closePath();
+      //Home goal 
+      ctx.beginPath();
+      ctx.moveTo(1, (canvas.height / 2) - 22);
+      ctx.lineTo(1, (canvas.height / 2) + 22);
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.closePath();
+      ctx.lineWidth = 1;
+
+      //Home penalty point
+      ctx.beginPath()
+      ctx.arc(88, canvas.height / 2, 1, 0, 2*Math.PI, true);
+      ctx.fill();
+      ctx.closePath();
+      //Home half circle
+      ctx.beginPath()
+      ctx.arc(88, canvas.height / 2, 73, 0.29*Math.PI, 1.71*Math.PI, true);
+      ctx.stroke();
+      ctx.closePath();
+      
+     
+      //Home L corner
+      ctx.beginPath()
+      ctx.arc(0, 0, 8, 0, 0.5*Math.PI, false);
+      ctx.stroke();
+      ctx.closePath();
+      //Home R corner
+      ctx.beginPath()
+      ctx.arc(0, canvas.height, 8, 0, 2*Math.PI, true);
+      ctx.stroke();
+      ctx.closePath();
+
 }
+
+
+        
 </script>
 
 <template>
@@ -110,11 +176,19 @@ function addMaterial(event) {
         <p>Metadaten</p>
         <hr />
       </form>
+      <div id="test">
+        <canvas id="penaltyArea" width="1000" height="500"></canvas>
+      </div>
+     
     </div>
+    
   </div>
 </template>
 
 <style scoped>
+#test{
+    width:20%;
+}
 #multi button {
   margin-top: 10pt;
 }

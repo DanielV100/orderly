@@ -5,7 +5,7 @@
   /**** COLORS ****/
   /* used for (1)  hovering over buttons */
   --deepForestGreen: rgba(51, 114, 85, 1);
-  /* used for (1) buttons in standard mode, (2) loaders */
+  /* used for (1) buttons in standard mode, (2) loaders, (3) success animation, (4) greeting */
   --avocadoGreen: rgba(95, 191, 129, 1);
   /* used for (1) disabled buttons, (2) loaders  */
   --avocadoGreenLowOpacity: rgba(95, 191, 129, 0.3);

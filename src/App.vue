@@ -4,13 +4,16 @@ import Login from './components/login/Login.vue';
 import Dashboard from './components/dashboard/Dashboard.vue';
 import Header from './components/header/Header.vue';
 import NewGoalkeeper from './components/goalkeeper/new_goalkeeper/NewGoalkeeper.vue';
+import NewExercise from './components/exercises/new_exercise/NewExercise.vue';
 const isShowingHeader = ref(false); 
 
 //defining the routes to the other pages 
 const routes = {
   '/': Login, 
   '/dashboard': Dashboard, 
-  '/addgoalie': NewGoalkeeper
+  '/addgoalie': NewGoalkeeper, 
+  '/addexercise': NewExercise
+
 }
 
 const currentPath = ref(window.location.hash); 

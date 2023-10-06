@@ -1,86 +1,155 @@
 <script setup>
-import { onMounted } from 'vue';
+import { createTextVNode, onMounted } from "vue";
 
-let materialContainer; 
+let materialContainer;
 let canvas;
+let wrapper;
+
 onMounted(() => {
-    materialContainer = document.getElementById('materialcontainer'); 
-    canvas = document.getElementById('penaltyArea'); 
-}); 
+  materialContainer = document.getElementById("materialcontainer");
+  canvas = document.getElementById("penaltyArea");
+  wrapper = document.querySelector("#testCanva");
+});
 function addMaterial(event) {
-    const materialContainer = document.getElementById('materialelement');
-    const newMaterial = materialContainer.cloneNode(true);
-   
-    const inputs = newMaterial.querySelectorAll('input');
-    inputs.forEach(input => input.value = '');
-    
+  const materialContainer = document.getElementById("materialelement");
+  const newMaterial = materialContainer.cloneNode(true);
 
-    document.getElementById('materialcontainer').appendChild(newMaterial);
+  const inputs = newMaterial.querySelectorAll("input");
+  inputs.forEach((input) => (input.value = ""));
 
-    const ctx = canvas.getContext('2d');
+  document.getElementById("materialcontainer").appendChild(newMaterial);
 
-    ctx.translate(canvas.width, 0);
-    ctx.rotate(Math.PI / 2);
-    ctx.scale(2, 2);
-      
-      // Outer lines
-      ctx.beginPath();
-      ctx.rect(0,0, canvas.width, canvas.height);
-      ctx.fillStyle = "#060";
-      ctx.fill();
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = "#FFF";
-      ctx.stroke();
-      ctx.closePath();
-      
-      ctx.fillStyle = "#FFF";
-      
-      //Home penalty box
-      ctx.beginPath();
-      ctx.rect(0, (canvas.height - 322) / 2, 132, 322);
-      ctx.stroke();
-      ctx.closePath();
-      //Home goal box
-      ctx.beginPath();
-      ctx.rect(0, (canvas.height - 146) / 2, 44, 146);
-      ctx.stroke();
-      ctx.closePath();
-      //Home goal 
-      ctx.beginPath();
-      ctx.moveTo(1, (canvas.height / 2) - 22);
-      ctx.lineTo(1, (canvas.height / 2) + 22);
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      ctx.closePath();
-      ctx.lineWidth = 1;
+  const ctx = canvas.getContext("2d");
+  ctx.imageSmoothingEnabled = false;
+  ctx.lineWidth = 2; // Experiment with different values
+  ctx.lineCap = "round"; // 'butt', 'round', or 'square'
 
-      //Home penalty point
-      ctx.beginPath()
-      ctx.arc(88, canvas.height / 2, 1, 0, 2*Math.PI, true);
-      ctx.fill();
-      ctx.closePath();
-      //Home half circle
-      ctx.beginPath()
-      ctx.arc(88, canvas.height / 2, 73, 0.29*Math.PI, 1.71*Math.PI, true);
-      ctx.stroke();
-      ctx.closePath();
-      
-     
-      //Home L corner
-      ctx.beginPath()
-      ctx.arc(0, 0, 8, 0, 0.5*Math.PI, false);
-      ctx.stroke();
-      ctx.closePath();
-      //Home R corner
-      ctx.beginPath()
-      ctx.arc(0, canvas.height, 8, 0, 2*Math.PI, true);
-      ctx.stroke();
-      ctx.closePath();
+  // Function to draw the football pitch
+  function drawPitch() {
+    //Outer lines
+    ctx.beginPath();
+    //needed - otherwise canva is too big  
+    canvas.width = wrapper.clientWidth; 
+    canvas.height = wrapper.clientHeight; 
+    console.log(wrapper.clientWidth); 
+    ctx.rect(0, 0, wrapper.clientWidth, canvas.height);
+    console.log(wrapper.clientWidth); 
+    ctx.fillStyle = "#060";
+    ctx.fill();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "#FFF";
+    ctx.stroke();
+    ctx.closePath();
 
+    //Penalty box
+    ctx.beginPath();
+    ctx.rect(
+      (wrapper.clientWidth / 2) * 0.5045,
+      0,
+      wrapper.clientWidth / 2,
+      (wrapper.clientWidth / 2) * 0.4125
+    );
+    ctx.stroke();
+    ctx.closePath();
+
+    //Goal box
+    ctx.beginPath();
+    ctx.rect(
+      (wrapper.clientWidth / 2) * 0.771,
+      0,
+      wrapper.clientWidth * 0.229,
+      wrapper.clientWidth * 0.06875
+    );
+    ctx.stroke();
+    ctx.closePath();
+
+    //Goal
+    ctx.beginPath();
+    ctx.moveTo((wrapper.clientWidth / 2) * 0.9085, 2);
+    ctx.lineTo((wrapper.clientWidth / 2) * 0.9085 + wrapper.clientWidth * 0.0915, 2);
+    ctx.lineWidth = 9;
+    ctx.stroke();
+    ctx.closePath();
+
+    //Penalty Point
+    ctx.beginPath();
+    ctx.arc(wrapper.clientWidth / 2, wrapper.clientWidth * 0.1375, 3, 0, 2 * Math.PI, true);
+    ctx.fillStyle = "#fff";
+    ctx.fill();
+    ctx.closePath();
+
+    //Half Circle
+    // Half Circle (Opens at the top)
+    ctx.beginPath();
+    const centerX = wrapper.clientWidth / 2;
+    const centerY = (wrapper.clientWidth / 2) * 0.4125; // Adjust the value as needed
+    const radius = wrapper.clientWidth * 0.08; // Adjust the value as needed
+    const startAngle = 0; // Start from 0 degrees (top)
+    const endAngle = Math.PI; // End at 180 degrees (bottom)
+    ctx.arc(centerX, centerY, radius, startAngle, endAngle, false);
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.closePath();
+
+    //Home L corner
+    ctx.beginPath();
+    ctx.arc(0, 0, 8, 0, 0.5 * Math.PI, false);
+    ctx.stroke();
+    ctx.closePath();
+    //Home R corner
+    ctx.beginPath();
+    ctx.arc(wrapper.clientWidth, 0, 8, 0, 2 * Math.PI, true);
+    ctx.stroke();
+    ctx.closePath();
+  }
+  let isDrawing = false;
+
+  canvas.addEventListener("mousedown", startDrawing);
+  canvas.addEventListener("mouseup", stopDrawing);
+  canvas.addEventListener("mousemove", draw);
+
+  canvas.addEventListener("touchstart", startDrawing);
+  canvas.addEventListener("touchend", stopDrawing);
+  canvas.addEventListener("touchmove", draw);
+
+  function startDrawing(e) {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX || e.touches[0].clientX;
+    const y = e.clientY || e.touches[0].clientY;
+    console.log('X: ' + x + 'Y: ' + y);
+
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.strokeStyle = "#FFF";
+    ctx.lineWidth = 3;
+    ctx.imageSmoothingEnabled = false;
+    ctx.moveTo(x - rect.left, y - rect.top);
+  }
+
+  function draw(e) {
+    e.preventDefault();
+    if (isDrawing) {
+      const rect = canvas.getBoundingClientRect();
+      console.log(rect); 
+      const x = (e.clientX || e.touches[0].clientX) - rect.left;
+      const y = (e.clientY || e.touches[0].clientY) - rect.top;
+      console.log('X: ' + x + 'Y: ' + y);
+
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    }
+  }
+
+  function stopDrawing() {
+    isDrawing = false;
+  }
+  drawPitch();
+}
+function methodTest() {
+  console.log(canvas.toDataURL()); 
 }
 
-
-        
 </script>
 
 <template>
@@ -150,7 +219,7 @@ function addMaterial(event) {
             <div id="materialcontainer">
               <label style="width: 100%">Materialien</label>
               <div id="materialelement" style="display: flex">
-                <input type="number" style="width: 20%" placeholder="0"/>
+                <input type="number" style="width: 20%" placeholder="0" />
                 <input
                   @input="validateMandantoryFieldsFilled"
                   id="lastname"
@@ -161,10 +230,10 @@ function addMaterial(event) {
                   required
                 />
                 <datalist id="materials">
-                    <option>Stangen</option>
-                    <option>Hütchen</option>
-                    <option>Bälle</option>
-                    <option>Pylonen</option>
+                  <option>Stangen</option>
+                  <option>Hütchen</option>
+                  <option>Bälle</option>
+                  <option>Pylonen</option>
                 </datalist>
               </div>
             </div>
@@ -176,18 +245,22 @@ function addMaterial(event) {
         <p>Metadaten</p>
         <hr />
       </form>
-      <div id="test">
-        <canvas id="penaltyArea" width="1000" height="500"></canvas>
+      <div id="testCanva">
+        <canvas id="penaltyArea" width="2000" height="400"></canvas>
       </div>
-     
+      <button @click="methodTest">Test</button>
     </div>
-    
   </div>
 </template>
 
 <style scoped>
-#test{
-    width:20%;
+#testCanva {
+  display: grid;
+  cursor: crosshair;
+  padding: 0;
+}
+#penaltyArea {
+  padding: 0;
 }
 #multi button {
   margin-top: 10pt;

@@ -4,6 +4,7 @@ import SoccerField from "../../soccer_field/SoccerField.vue";
 
 
 const addDrawing = ref(false); 
+const addNote = ref(false); 
 
 
 function addMaterial(event) {
@@ -24,6 +25,10 @@ function cloneExistingFields(event, elementContainer, elementToClone) {
 
 function check(event) {
   addDrawing.value = event.target.checked; 
+}
+
+function checkNotes(event) {
+  addNote.value = event.target.checked; 
 }
 </script>
 
@@ -49,7 +54,10 @@ function check(event) {
           </div>
           <div class="input-box">
             <label>Kategorie</label>
-            <input list="test" multiple />
+            <input 
+            list="test" 
+            placeholder="Aufwärmen"
+            multiple />
             <datalist id="test">
               <option value="Test"></option>
               <option value="Aufwärmen"></option>
@@ -74,7 +82,6 @@ function check(event) {
               @input="validateMandantoryFieldsFilled"
               id="lastname"
               type="time"
-              placeholder="Kahn"
               required
             />
           </div>
@@ -94,7 +101,7 @@ function check(event) {
             <div id="materialcontainer">
               <label style="width: 100%">Materialien</label>
               <div id="materialelement" style="display: flex">
-                <input class="input" type="number" style="width: 20%" placeholder="0" />
+                <input class="input" type="number" style="width: 20%; margin-right: 8pt" placeholder="0" />
                 <input
                   @input="validateMandantoryFieldsFilled"
                   id="lastname"
@@ -116,8 +123,8 @@ function check(event) {
           </div>
         </div>
         <br />
-        <p>Metadaten</p>
-        <hr />
+
+   
       </form>
       <div id="describtionContainer">
         <form @submit="onSubmitClick" class="form" id="form">
@@ -130,10 +137,9 @@ function check(event) {
       </div>
       <button type="button" @click="cloneExistingFields($event, 'describtionContainer', 'describtion')">+</button>
         <br />
-        <p>Beschreibung</p>
-        <hr />
+       
       
-
+        <br>
       <div>
         <div>
           <input @input="check" type="checkbox" name="testCheck">
@@ -144,15 +150,29 @@ function check(event) {
       <div v-if="addDrawing" id="soccerFieldContainer">
         <SoccerField />
       </div>
+      <br>
+      
+
+      <div>
+        <div>
+          <input @input="checkNotes" type="checkbox" name="testCheck">
+          <label for="testCheck">Noziz hinzufügen</label>
+        </div>
+      </div>
+      <div v-if="addNote">
+        <h2>Schritt 1</h2>
+          <textarea class="input" id="textTest" rows="3"></textarea>
+      </div>
     </div>
+    
   </div>
 </template>
 
 <style scoped>
-#textTest {
-  width: 100%;
-  resize: none;
-  font-size: 18pt;
+
+hr + p {
+  font-size: 80pt;
+  color: black;
 }
 #soccerFieldContainer {
   display: grid;
@@ -182,9 +202,7 @@ function check(event) {
   padding: 20pt 20pt 10pt 20pt;
   text-align: left;
 }
-input {
-  font-size: 18pt;
-}
+
 .form .input-box {
   width: 100%;
   margin-top: 20px;
@@ -196,15 +214,8 @@ input {
   position: relative;
   height: 50px;
   width: 100%;
-  color: #707070;
   margin-top: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4pt;
   padding: 0 15px;
-}
-.input-box input:focus {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  color: black;
 }
 .form .column {
   display: flex;
@@ -213,16 +224,14 @@ input {
 .address :where(input, .select-box) {
   margin-top: 15px;
 }
-.form button {
+button {
   height: 55px;
   width: 100%;
   color: #fff;
   font-size: 18pt;
   font-weight: 400;
-  margin-top: 30px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  margin-top: 5pt;
+  transition: all 0.5s ease;
 }
 
 /*Responsive*/

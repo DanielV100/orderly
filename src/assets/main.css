@@ -12,20 +12,31 @@
   /* used for (1) light text */
   --mouseGrey: rgba(240, 240, 240, 0.3);
   /* used for (1) header */ 
-  --lightGrey: rgb(240, 240, 240, 1);
+  --lightGrey: rgba(240, 240, 240, 1);
   /* used for page indicator */ 
   --deepOceanBlue: rgba(33, 49, 63, 1);
+  /* used for (1) input border, (2) textarea border */ 
+  --lightestGrey:rgba(221, 221, 221, 1); 
 
   --limeGreen: rgba(147, 216, 78, 1);
   --darkMossGreen: rgba(58, 140, 102, 1);
 
-  /**** font family ****/
+  /**** FONT FAMILY ****/
   --standardFont: "Nunito Sans", sans-serif;
 
-  /**** font sizes ****/
-  --standardFontSize: 18px;
+  /**** FONT SIZES ****/
+  --standardFontSize: 18pt;
   --headingFontSize: 36px;
   --bigHeadingFontSize: 40pt;
+
+  /**** BORDER RADIUS ****/
+  /* text input in forms */
+  --formInputBorderRadius: 4pt; 
+  --buttonHoverBorderRadius: 40pt;
+
+  /**** BORDER WIDTH ****/ 
+  /* on hover in form inputs */ 
+  --formInputBorderWidthOnHover: 1pt; 
 }
 
 /**** ALL ****/
@@ -39,35 +50,69 @@
 /**** BUTTONS ****/
 button {
   background: var(--avocadoGreen);
+  border:none; 
+  cursor: pointer;
+  border-radius: 4pt;
 }
 
 button:hover {
   background: var(--deepForestGreen);
+  border-radius: var(--buttonHoverBorderRadius);
 }
 
 button:disabled {
   background: var(--avocadoGreenLowOpacity);
 }
 
-/**** text ****/
+/**** TEXT ****/
 p {
-  font-family: var(--standardFont);
   font-size: var(--standardFontSize);
 }
 
-/**** headings ****/
+/**** TEXTAREA ****/
+textarea {
+  width: 100%;
+  resize: none;
+  font-size: var(--standardFontSize);
+  border-radius: var(--formInputBorderRadius);
+  border: none;
+}
+
+textarea:hover {
+  border-width: var(--formInputBorderWidthOnHover);
+  border-color: var(--lightestGrey);
+  border-style: solid;
+}
+
+/**** INPUT FIELDS ****/
+input {
+  font-size: var(--standardFontSize);
+  border-radius: var(--formInputBorderRadius);
+  border: none;
+}
+
+input:hover {
+  border-width: var(--formInputBorderWidthOnHover);
+  border-color: var(--lightestGrey);
+  border-style: solid;
+}
+
+input:focus {
+  color: black;
+}
+
+/**** HEADINGS ****/
 h1 {
   font-size: var(--headingFontSize);
   font-weight: 800;
-  font-family: var(--standardFont);
 }
 h2 {
-  font-family: var(--standardFont);
   font-size: var(--headingFontSize);
   font-weight: bold;
 }
 
-/**** current page indicator ****/
+
+/**** CURRENT PAGE INDICATOR ****/
 .current_page_indicator {
   display: inline;
   margin-top: 8pt;
